@@ -21,7 +21,7 @@ export default function TextForm(props) {
     backgroundColor: "white",
   });
   const changeMode = () => {
-    if (mode.color == "black") {
+    if (mode.color === "black") {
       console.log("black");
       setMode({ color: "white", backgroundColor: "black" });
       setbtnText("Enable Light Mode");
@@ -53,18 +53,28 @@ export default function TextForm(props) {
         <button className="btn btn-primary my-1 mx-1" onClick={clear}>
           Clear
         </button>
-        <button className="btn btn-primary my-1 mx-1" onClick={changeMode}>
+        <button className="btn btn-primary " onClick={changeMode}>
           {btn}
         </button>
       </div>
       <div className="container my-3">
         <h1>Your text summary</h1>
         <p>
-          {text.split(" ").length} words and {text.length} characters
+          {
+            text.split(" ").filter((element) => {
+              return element.length !== 0;
+            }).length
+          }{" "}
+          words and {text.length} characters
         </p>
-        <p>{0.008 * text.split(" ").length} minutes read</p>
+        <p>
+          {0.008 *
+            text.split(" ").filter((element) => {
+              return element.length !== 0;
+            }).length}{" "}
+          minutes read
+        </p>
         <h2>Text Preview</h2>
-        <p>{text}</p>
         <p>{text}</p>
       </div>
     </div>
